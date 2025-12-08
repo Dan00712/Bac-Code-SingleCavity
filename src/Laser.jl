@@ -69,10 +69,10 @@ function map_real2imag(H, n)
 
     T = Matrix{ComplexF64}(I, N, N)
 
-    T[n,   n]   = 1/2
-    T[n,   n+1] = im/2
-    T[n+1,n]   = 1/2
-    T[n+1,n+1] =  -im/2
+    T[n,   n]   = 1/sqrt(2)
+    T[n,   n+1] = im/sqrt(2)
+    T[n+1,n]   = 1/sqrt(2)
+    T[n+1,n+1] =  -im/sqrt(2)
 
     Hnew = T * Hc * T'
 
