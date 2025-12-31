@@ -61,7 +61,7 @@ function ηdot(q; Δ, κ)
     Ec_ = Ec(0, 0, z, Δ)
     Et_ = Et(0, 0, z)
 
-    adot = -im * (Δ - Ec_^2/ħ) * a + im*α/ħ * Ec_ * Et_
+    adot = -im * (Δ - Ec_^2/ħ) * a + im*α/ħ * Ec_ * Et_ -κ/2 * a
     asdot = conj(adot)
 
     zdot = α/2 * abs2(Et(0, 0, z)) * L(z, Δ, κ)
