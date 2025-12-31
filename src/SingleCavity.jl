@@ -1,9 +1,8 @@
 module SingleCavity
 
-include("Util.jl")
-
-
 include("Constants.jl")
 include("Laser.jl")
+
+include("Util.jl")
 
 end # module

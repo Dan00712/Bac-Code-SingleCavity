@@ -4,6 +4,8 @@ using Dates
 
 using Roots
 
+using ..Laser
+
 export now_nodots, get_zeroes
 
 function now_nodots()
@@ -11,30 +13,29 @@ function now_nodots()
 end
 
 function get_zeroes(f, Z)
-    	guesses = let
-		guesses = []
-		zprev = Z[1]
-		fprev = f(Z[1])
+    guesses = let
+        guesses = []
+        zprev = Z[1]
+        fprev = f(Z[1])
 
-		for z in Z[2:end]
-			fz = f(z)
+        for z in Z[2:end]
+            fz = f(z)
 
-			if fz * fprev < 0
+            if fz * fprev < 0
                 push!(guesses, (zprev, z))
-			end
-			zprev = z
-			fprev = fz
-		end
-		guesses
-	end
+            end
+            zprev = z
+            fprev = fz
+        end
+        guesses
+    end
 
-	zmins = []
-	for guess in guesses
-		push!(zmins, find_zero(f, guess))
-	end
+    zmins = []
+    for guess in guesses
+        push!(zmins, find_zero(f, guess))
+    end
 
     zmins
 end
-
 
 end #module
