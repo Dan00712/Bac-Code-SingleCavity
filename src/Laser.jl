@@ -61,11 +61,11 @@ function ηdot(q; Δ, κ)
     Ec_ = Ec(0, 0, z, Δ)
     Et_ = Et(0, 0, z)
 
-    adot = -im * (Δ - Ec_^2/ħ) * a + im*α/ħ * Ec_ * Et_ -κ/2 * a
+    adot = -im * (Δ - Ec_^2/ħ) * a + im*α/ħ * Ec_ * Et_ - κ/2*a
     asdot = conj(adot)
 
-    zdot = α/2 * abs2(Et(0, 0, z)) * L(z, Δ, κ)
-    pdot = pz/m
+    zdot = pz/m
+    pdot = α/2 * abs2(Et(0, 0, z)) * L(z, Δ, κ)
 
     # [̇q, ̇p]
     [zdot, adot, pdot, asdot]
@@ -75,12 +75,15 @@ function isstable(z; Δ, κ)
     a = αeq_c(0, 0, z, Δ, κ)
     q = [z, a]
     function stable_pertubation(δq)
-        Δη = ηdot(q+δq; Δ = Δ, κ = κ)
+        dη = ηdot(q+δq; Δ = Δ, κ = κ)
+        dq = dη[1:2]
+        ddq = dη[3:end]/m
 
-        # theta:=angle(Δq, δq) >= 90°) <=> cos(theta) <= 0
+        # theta:=angle(Δq, δq) >= 90°) <=> cos(theta) <= 0 
         #cos(theta) :=
-        real(δq⋅Δη[1:2])/norm(δq)/norm(Δη[1:2]) <= 0
+        (real(δq⋅dq)/norm(δq)/norm(dq) <= 0 && real(δq⋅ddq)/norm(δq)/norm(ddq) <= 0)
     end
+
     map([
         [BigFloat(z/1e3), 0],
         [BigFloat(-z/1e3), 0],
