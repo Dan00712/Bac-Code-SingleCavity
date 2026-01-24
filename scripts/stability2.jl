@@ -63,9 +63,9 @@ for (g, marker, color) in zip(["stable", "unstable"], markers, [:blue, :orange])
 end
 
 @info "save plot"
-mkpath(plotsdir("stabilities"))
-savefig(p, plotsdir("stabilities", "stab-$date.png"))
-savefig(p, plotsdir("stabilities.pdf"))
+mkpath(plotsdir("stabilities2"))
+savefig(p, plotsdir("stabilities", "stab2-$date.png"))
+savefig(p, plotsdir("stabilities2.pdf"))
 if isinteractive()
     gui(p)
 end
