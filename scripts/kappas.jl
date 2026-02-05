@@ -32,7 +32,7 @@ for (κ, color, marker) in zip(Κ, colors, markers)
 
     scatter!(
         p,
-        ωs/1e3,
+        ωs ./(2π*1e3),
         zmins .* 1e6,
         label = "κ=$(κ/2π /1e3) 2πkHz",
         marker = marker,

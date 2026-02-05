@@ -33,7 +33,7 @@ end
 
 @info "check stability of equilibrium positions"
 stabilities = [
-    if isstable2(zmin; Δ = ω, κ = κ)
+    if isstable(zmin, ω, κ)
         "stable"
     else
         "unstable"
@@ -42,9 +42,9 @@ stabilities = [
 
 @info "save generated data"
 date = now_nodots()
-M = (Δω = ωs, zmin = zmins, stability = stabilities)
-mkpath(datadir("sims", "stability2"))
-@save datadir("sims", "stability2", "s-$date.jld2") M
+M = (Δ = ωs, zmin = zmins, stability = stabilities)
+mkpath(datadir("sims", "stability"))
+@save datadir("sims", "stability", "s-$date.jld2") M
 
 @info "create plot"
 for (g, marker, color) in zip(["stable", "unstable"], markers, [:blue, :orange])
@@ -63,9 +63,9 @@ for (g, marker, color) in zip(["stable", "unstable"], markers, [:blue, :orange])
 end
 
 @info "save plot"
-mkpath(plotsdir("stabilities2"))
-savefig(p, plotsdir("stabilities2", "stab2-$date.png"))
-savefig(p, plotsdir("stabilities2.pdf"))
+mkpath(plotsdir("stabilities"))
+savefig(p, plotsdir("stabilities", "stab2-$date.png"))
+savefig(p, plotsdir("stabilities.pdf"))
 if isinteractive()
     gui(p)
 end
