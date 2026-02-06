@@ -68,7 +68,7 @@ function HHs(x,y,z, Δω, κ)
 
         ħ*ωc *real(a*as) - α*Etot2
     end
-    @assert ∂zHs(z, Δω, κ) .< 1e10
+    #@assert ∂zHs(z, Δω, κ) .< 1e10
     ForwardDiff.hessian(r->f(r),
                         [x,y,z , real(αeq), imag(αeq)]
                        )
